@@ -1,0 +1,44 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <titleControllers</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+    <script>
+    angular.module("exampleApp", [])
+    .controller("simpleCtrl", function($scope) {
+    $scope.addresses = {};
+    $scope.setAddress = function(type, zip) {
+     console.log("Type: " + type + " " + zip)
+    }
+
+    
+      
+    });
+
+    </script>
+</head>
+<body  ng-controller="simpleCtrl">
+    <div class="well">
+    <label>Select a city:</label> 
+    <select ng-options="city for city in cities" ng-model="city">
+
+    </select>   
+
+</div>
+    <div class="well">
+        <p>The city is: {{city}}</p>
+        <p>The country is: {{getCountry(city) || "Unknown"}}</p>
+    </div>
+</body>
+</html>
+
+
+

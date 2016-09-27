@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html ng-app="sportsStore">
+<head>
+    <title>SportsStore</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+
+    <script>
+        angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
+        .config(function ($routeProvider) {
+            $routeProvider.when("/complete", {
+                templateUrl: "/views/thankYou.html"
+            }); 
+            $routeProvider.when("/placeorder", {
+                templateUrl: "/views/placeOrder.html"
+            });
+
+            $routeProvider.when("/checkout", {
+                templateUrl: "/views/checkoutSummary.html"
+            });
+            $routeProvider.when("/products", {
+                templateUrl: "/views/productList.html"
+            });
+            $routeProvider.otherwise({
+                templateUrl: "/views/productList.html"
+            });
+        });
+    </script>
+    <script src="controllers/sportsStore.js"></script>
+    <!--<script src="controllers/top-level controller.js">-->
+    <script src="scripts/customFilters.js"></script>
+    <script src="controllers/productListControllers.js"></script>
+    <script src="components/cart/cart.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="controllers/checkoutControllers.js"></script>
+</head>
+
+<body ng-controller="sportsStoreCtrl">
+    <div class="navbar navbar-inverse">
+        <a class="navbar-brand" href="#">SPORTS STORE</a>
+        <cart-summary />
+    </div>
+    <div class="alert alert-danger" ng-hide="data.products">
+        Error ({{data.error.status}}). The product data was not loaded.
+        <a href="/app.html" class="alert-link">Click here to try again</a>
+    </div>
+    <ng-view />
+</body>
+</html>
